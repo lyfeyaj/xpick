@@ -11,7 +11,9 @@ function pickByFields(obj, fields) {
   // handle undefine or null
   if (obj == null) return obj;
 
-  if (!fields) return {};
+  let _obj = Object.create(null);
+
+  if (!fields) return _obj;
 
   // handle array
   if (Array.isArray(obj)) {
@@ -20,7 +22,6 @@ function pickByFields(obj, fields) {
     });
   }
 
-  let _obj = Object.create(null);
   let ignoreFields = [];
 
   // handle plain object
@@ -54,11 +55,13 @@ function pickByFields(obj, fields) {
 }
 
 function xpick(obj, paths) {
-  if (!paths || !obj) return {};
+  let _obj = Object.create(null);
+
+  if (!paths || !obj) return _obj;
 
   if (!isString(paths)) return pick(obj, paths);
 
-  return pickByFields(obj, stoc(paths)) || {};
+  return pickByFields(obj, stoc(paths)) || _obj;
 }
 
 module.exports = xpick;
