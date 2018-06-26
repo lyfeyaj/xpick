@@ -21,7 +21,7 @@ yarn install xpick
 ## Usage
 
 ```javascript
-const xpick = require('xpick');
+const pick = require('xpick');
 
 let object = {
   name: 'felix',
@@ -35,16 +35,16 @@ let object = {
   }
 };
 
-xpick(object, ['name', 'gender']);
+pick(object, ['name', 'gender']);
 // => { name: 'felix', gender: 'male' }
 
-xpick(object, 'name');
+pick(object, 'name');
 // => { name: 'felix' }
 
-xpick(object, 'name gender profile');
+pick(object, 'name gender profile');
 // => { name: 'felix', gender: 'male', profile: { github: 'lyfeyaj', twitter: 'lyfeyaj' } }
 
-xpick(object, `
+pick(object, `
   name
   gender: sex
   profile { twitter }
@@ -53,6 +53,6 @@ xpick(object, `
 // => { name: 'felix', sex: 'male', profile: { twitter: 'lyfeyaj' }, sports: [{ name: 'pingpong' }] }
 ```
 
-For more `xpick` syntax, check [stoc](https://github.com/lyfeyaj/stoc) for more information.
+For full `xpick` syntax support, please check [stoc](https://github.com/lyfeyaj/stoc) for more information.
 
 Enjoy !
