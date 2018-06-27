@@ -6,33 +6,30 @@ const isPlainObject = require('lodash.isplainobject');
 const forEach = require('lodash.foreach');
 const stoc = require('stoc');
 
-// pick according to stoc parsed fields
+// Pick according to stoc parsed fields
 function pickByFields(obj, fields) {
-  // handle undefine or null
+  // Handle undefine or null
   if (obj == null) return obj;
 
   let _obj = Object.create(null);
 
   if (!fields) return _obj;
 
-  // handle array
-  if (Array.isArray(obj)) {
-    return obj.map(function(val) {
-      return pickByFields(val, fields);
-    });
-  }
+  // Handle array
+  if (Array.isArray(obj)) return obj.map(v => pickByFields(v, fields));
 
   let ignoreFields = [];
 
-  // handle plain object
+  // Handle plain object
   forEach(fields, function(inner, field) {
     if (!obj.hasOwnProperty(field)) return;
 
     // pick field
-    if (inner === 1) _obj[field] = obj[field];
-
+    if (inner === 1) {
+      _obj[field] = obj[field];
+    }
     // field rename then pick
-    if (isString(inner)) {
+    else if (isString(inner)) {
       delete _obj[inner];
 
       // field rename with inner object
@@ -44,9 +41,7 @@ function pickByFields(obj, fields) {
       } else {
         _obj[inner] = obj[field];
       }
-    }
-
-    if (isPlainObject(inner) && !~ignoreFields.indexOf(field)) {
+    } else if (isPlainObject(inner) && !~ignoreFields.indexOf(field)) {
       _obj[field] = pickByFields(obj[field], inner);
     }
   });
@@ -54,6 +49,7 @@ function pickByFields(obj, fields) {
   return _obj;
 }
 
+// Main function
 function xpick(obj, paths) {
   let _obj = Object.create(null);
 
