@@ -1,6 +1,6 @@
 {
   "name": "xpick",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Extremely powerful pick functionality",
   "main": "index.js",
   "scripts": {
@@ -25,10 +25,10 @@
     "lodash.isplainobject": "^4.0.6",
     "lodash.isstring": "^4.0.1",
     "lodash.pick": "^4.4.0",
-    "stoc": "^1.0.2"
+    "stoc": "^1.1.0"
   },
   "devDependencies": {
-    "chai": "^4.3.1",
-    "mocha": "^8.3.0"
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
   }
 }
